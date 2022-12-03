@@ -1,9 +1,18 @@
 const colorPicker = document.querySelector('input[type="color"]');
 
-colorPicker.addEventListener('change', watchColorPicker, false);
+const testDiv = document.querySelector('div#test-div');
+
+let currentColor = 'red';
 
 function watchColorPicker(event) {
-  document.querySelectorAll('div').forEach((div) => {
-    div.style.color = event.target.value;
-  });
+  currentColor = event.target.value;
 }
+
+function changeColor() {
+  console.log(currentColor)
+  testDiv.style.backgroundColor = currentColor;
+}
+
+colorPicker.addEventListener('change', watchColorPicker);
+
+testDiv.addEventListener('mouseover', changeColor);
