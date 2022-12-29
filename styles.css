@@ -20,7 +20,17 @@ div#test-div {
   justify-content: center;
   align-items: center;
   height: 50%;
-  width: 70%;
+  width: 30%;
+  color: black;
+  border: 2px solid rgb(0, 0, 0);
+}
+
+div.drawing-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+  width: 30%;
   color: black;
   border: 2px solid rgb(0, 0, 0);
 }
