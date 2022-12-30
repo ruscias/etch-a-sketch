@@ -62,15 +62,20 @@ function changeColor() {
   this.style.backgroundColor = currentColor;
 }
 
-//int main(void) 
 
+
+
+
+//  int main(void) 
+//
+//
 createTable(20);
 
 // need a default color... I think...
-let currentColor = 'antiquewhite';
+let currentColor = '#ffc77e';
 
 // run my query selectors
-const colorPicker = document.querySelector('input[type="color"]');
+const colorPicker = document.querySelector('#color');
 const resetButton = document.querySelector('#reset-button');
 const gridSize = document.querySelector('#grid-size');
 

@@ -27,6 +27,7 @@ button#reset-button {
   font-size: 32px;
   border-radius: 4px;
   background-color: rgb(255, 199, 126);
+  padding: 8px;
 }
 
 button#reset-button:hover {
@@ -100,6 +101,6 @@ div.column {
 div.cell {
   flex: 1;
   background-color: rgb(255, 250, 223);
-  border: 0.1px solid rgb(158, 158, 158);
+  border: 0.1px solid rgb(185, 185, 185);
 }
 
