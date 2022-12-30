@@ -1,27 +1,55 @@
-var columns = 3;
-var rows = 4;
+function createTable(size) {
 
-var grid = document.createElement('div');
-grid.className = 'grid';
-for (var i = 0; i < columns; ++i) {
-  var column = document.createElement('div'); // create column
-  column.className = 'column';
-  for (var j = 0; j < rows; ++j) {
-    var row = document.createElement('div'); // create row
-    row.className = 'row';
-    row.textContent = i + '-' +j; // set text
-    column.appendChild(row); // append row in column
+  const gridSizeSpan = document.getElementById('grid-size-span');
+  gridSizeSpan.innerText = size;
+  
+  // create a new div element
+  const grid = document.createElement('div');
+  
+  const columns = size;
+  const rows = size;
+
+  grid.className = 'grid';
+  grid.id = 'grid';
+  for (let i = 0; i < columns; ++i) {
+    const column = document.createElement('div'); // create column
+    column.className = 'column';
+    for (let j = 0; j < rows; ++j) {
+      const cell = document.createElement('div'); // create row
+      cell.className = 'cell';
+      column.appendChild(cell); // append row in column
+    }
+    grid.appendChild(column); // append column inside grid
   }
-  grid.appendChild(column); // append column inside grid
+
+  // add the newly created element and its content into the DOM
+  const drawingAreaDiv = document.getElementById('drawing-area');
+
+  drawingAreaDiv.appendChild(grid);
+  
+  const allDrawingDivs = document.querySelectorAll('div.cell');
+  
+  // add an event listener for each .drawing-div
+  allDrawingDivs.forEach( (drawDiv) => {
+    drawDiv.addEventListener('mouseover',changeColor)
+  });
 }
-document.body.appendChild(grid);
 
-const colorPicker = document.querySelector('input[type="color"]');
+function resetGrid() {
+  const drawingArea = document.getElementById('drawing-area');
+  const grid = document.getElementById('grid');
+  drawingArea.removeChild(grid);
+  const gridSize = document.getElementById('grid-size');
+  gridSize.value = 20;
+  createTable(20);
+}
 
-const allDrawingDivs = document.querySelectorAll('div.row');
-
-// need a default color... I think...
-let currentColor = 'red';
+function updateGrid() {
+  const drawingArea = document.getElementById('drawing-area');
+  const grid = document.getElementById('grid');
+  drawingArea.removeChild(grid);
+  createTable(this.value);
+}
 
 // function to be called when value in color picker is changed  
 function watchColorPicker(event) {
@@ -34,10 +62,20 @@ function changeColor() {
   this.style.backgroundColor = currentColor;
 }
 
+//int main(void) 
+
+createTable(20);
+
+// need a default color... I think...
+let currentColor = 'antiquewhite';
+
+// run my query selectors
+const colorPicker = document.querySelector('input[type="color"]');
+const resetButton = document.querySelector('#reset-button');
+const gridSize = document.querySelector('#grid-size');
+
 // actual event listener looking for changes to color picker
 colorPicker.addEventListener('change', watchColorPicker);
-
-
-allDrawingDivs.forEach( (drawDiv) => {
-  drawDiv.addEventListener('mouseover',changeColor)
-});
+//other event listeners
+resetButton.addEventListener('click', resetGrid );
+gridSize.addEventListener('change', updateGrid );

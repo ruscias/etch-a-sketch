@@ -10,10 +10,18 @@
 </head>
 <body>
   <div class="container">
-    <div class="drawing-div">drawing-div</div>
-    <div class="drawing-div">drawing-div</div>
-    <div class="drawing-div">drawing-div</div>
+    <div class="options">
+      <label for="color">Color:</label>
+      <input type="color" id="color" name="color" value="#ffc77e">
+      <label for="grid-size"># Of Squares:</label>
+      <div class="grid-size-div" id="grid-size-div">
+        <input type="range" id="grid-size" name="grid-size"
+        min="1" max="100" value="20">
+        <span id="grid-size-span"></span>
+      </div>
+      <button id="reset-button">Reset</button>
+    </div>
+    <div id="drawing-area"></div>
   </div>
-  <input type="color" value="#ff0000" />
 </body>
 </html>
