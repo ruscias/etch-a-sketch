@@ -1,3 +1,9 @@
+// function to be called on mouse over event in a div
+function changeColor() {
+  this.style.backgroundColor = currentColor;
+}
+
+
 function createTable(size) {
 
   // get the span#grid-size-span and set its value
@@ -75,14 +81,6 @@ function watchColorPicker(event) {
   currentColor = event.target.value;
   console.log(currentColor);
 }
-
-// function to be called on mouse over event in a div
-function changeColor() {
-  this.style.backgroundColor = currentColor;
-}
-
-
-
 
 
 //  int main(void) 
