@@ -101,6 +101,7 @@ div.column {
 div.cell {
   flex: 1;
   background-color: rgb(255, 250, 223);
-  border: 0.1px solid rgb(185, 185, 185);
+  /*not sure I like the border*/
+  /*border: 0.1px solid rgb(185, 185, 185);*/
 }
 
