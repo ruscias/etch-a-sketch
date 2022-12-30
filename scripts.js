@@ -1,53 +1,72 @@
 function createTable(size) {
 
+  // get the span#grid-size-span and set its value
   const gridSizeSpan = document.getElementById('grid-size-span');
   gridSizeSpan.innerText = size;
   
-  // create a new div element
+  // create a new div element called grid...
   const grid = document.createElement('div');
-  
-  const columns = size;
-  const rows = size;
-
+  //... and set some of its properties
   grid.className = 'grid';
   grid.id = 'grid';
+  
+  // set the columns and cells values
+  const columns = size;
+  const cells = size;
+
+  // run a nested loop to actually create the grid
   for (let i = 0; i < columns; ++i) {
-    const column = document.createElement('div'); // create column
+    // create column and set some of its properties
+    const column = document.createElement('div'); 
     column.className = 'column';
-    for (let j = 0; j < rows; ++j) {
-      const cell = document.createElement('div'); // create row
+
+    // create cells within the row
+    for (let j = 0; j < cells; ++j) {
+      // create a div called cell
+      const cell = document.createElement('div');
       cell.className = 'cell';
-      column.appendChild(cell); // append row in column
+      // append cell to current column
+      column.appendChild(cell); 
     }
-    grid.appendChild(column); // append column inside grid
+    // append column to grid
+    grid.appendChild(column);
   }
 
-  // add the newly created element and its content into the DOM
+  // get the div#drawing-area and append the grid to it
   const drawingAreaDiv = document.getElementById('drawing-area');
-
   drawingAreaDiv.appendChild(grid);
   
-  const allDrawingDivs = document.querySelectorAll('div.cell');
-  
-  // add an event listener for each .drawing-div
-  allDrawingDivs.forEach( (drawDiv) => {
-    drawDiv.addEventListener('mouseover',changeColor)
+  // get all cells in the grid
+  const allCells = document.querySelectorAll('div.cell');
+
+  // add an event listener for each cell
+  allCells.forEach( (cell) => {
+    cell.addEventListener('mouseover',changeColor)
   });
 }
 
 function resetGrid() {
+  //get the element #drawing-area
   const drawingArea = document.getElementById('drawing-area');
+  // get the element #grid
   const grid = document.getElementById('grid');
+  // remove the grid  
   drawingArea.removeChild(grid);
-  const gridSize = document.getElementById('grid-size');
+  // reset grid size value
+  const gridSize = document.getElementById('grid-size-input');
   gridSize.value = 20;
+  // create a new grid
   createTable(20);
 }
 
 function updateGrid() {
+  //get the element #drawing-area
   const drawingArea = document.getElementById('drawing-area');
+  // get the element #grid
   const grid = document.getElementById('grid');
+  // remove the grid
   drawingArea.removeChild(grid);
+  // create a new grid with the value the user chose
   createTable(this.value);
 }
 
@@ -69,6 +88,8 @@ function changeColor() {
 //  int main(void) 
 //
 //
+
+//create initial table
 createTable(20);
 
 // need a default color... I think...
@@ -77,10 +98,11 @@ let currentColor = '#ffc77e';
 // run my query selectors
 const colorPicker = document.querySelector('#color');
 const resetButton = document.querySelector('#reset-button');
-const gridSize = document.querySelector('#grid-size');
+const gridSize = document.querySelector('#grid-size-input');
 
 // actual event listener looking for changes to color picker
 colorPicker.addEventListener('change', watchColorPicker);
-//other event listeners
+//event listener for reset button press
 resetButton.addEventListener('click', resetGrid );
+//event listener for grid size changes
 gridSize.addEventListener('change', updateGrid );
